@@ -1,0 +1,26 @@
+<div>
+	 <ngx-carousel
+      [inputs]="carouselBanner"
+      [moveToSlide]="1">
+          <ngx-item NgxCarouselItem class="bannerStyle">
+              <h1>1</h1>
+          </ngx-item>
+          <ngx-item NgxCarouselItem class="bannerStyle">
+              <h1>2</h1>
+          </ngx-item>
+          <ngx-item NgxCarouselItem class="bannerStyle">
+              <h1>3</h1>
+          </ngx-item>
+          <button NgxCarouselPrev class='leftRs'>&lt;</button>
+          <button NgxCarouselNext class='rightRs'>&gt;</button>
+    </ngx-carousel>
+</div>
+<div>
+	<ngx-carousel [inputs]="carouselTile">
+	  <ngx-tile NgxCarouselItem *ngFor="let Tile of carouselTileItems">
+	    <h1>{{Tile}}</h1>
+	  </ngx-tile>
+      <button NgxCarouselPrev class='leftRs'>&lt;</button>
+      <button NgxCarouselNext class='rightRs'>&gt;</button>
+    </ngx-carousel>
+</div>
