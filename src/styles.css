@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
+@import "~font-awesome/css/font-awesome.css";
 
 body{
 	padding-top: 80px;
@@ -15,4 +16,20 @@ button[disabled] {
 
 .fixed-top {
 	z-index: 999;
+}
+
+.mg-5 {
+	margin: 5px;
+}
+
+.fa-star{
+    color: gray;
+}
+
+.fa-thumbs-up {
+	color: darkcyan;
+}
+
+.clr-brown {
+	color: brown;
 }

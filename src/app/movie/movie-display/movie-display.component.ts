@@ -9,9 +9,10 @@ import { MovieService } from '../../shared/services/movie.service';
   styleUrls: ['./movie-display.component.css']
 })
 export class MovieDisplayComponent implements OnInit {
-  public carouselTileItems: Array<any>;
-  public carouselTile: NgxCarousel;
-  public carouselBanner: NgxCarousel;
+  carouselTileItems: Array<any>;
+  carouselTile: NgxCarousel;
+  carouselBanner: NgxCarousel;
+  nowPlayingMovies = [];
   constructor(private movieService:MovieService) { }
   
   ngOnInit() {
@@ -76,9 +77,13 @@ export class MovieDisplayComponent implements OnInit {
 
  getNowPlayngMovies(){
    this.movieService.getNowPlayingMovies().subscribe(response=>{
-     console.log(response.json());
+     if(response.json().results.length > 0){
+       this.nowPlayingMovies = response.json().results;
+     } else {
+       this.nowPlayingMovies = [];
+     }
    },error=>{
-     console.log(error);
+     this.nowPlayingMovies = [];
    })
  }
 

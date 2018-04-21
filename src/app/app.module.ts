@@ -25,6 +25,10 @@ import { MovieDisplayComponent } from './movie/movie-display/movie-display.compo
     RouterModule.forRoot([{
       path: '',
       component: MovieDisplayComponent
+    },{
+      path: '**',
+      redirectTo: '/',
+      pathMatch: 'full'
     }])
   ],
   providers: [],
