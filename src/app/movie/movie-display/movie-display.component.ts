@@ -13,11 +13,12 @@ export class MovieDisplayComponent implements OnInit {
   carouselTile: NgxCarousel;
   carouselBanner: NgxCarousel;
   nowPlayingMovies = [];
+  topRatedMovies = [];
   constructor(private movieService:MovieService) { }
   
   ngOnInit() {
     this.getNowPlayngMovies();
-
+    this.getTopRatedMovies();
     this.carouselBanner = {
       grid: {xs: 1, sm: 1, md: 1, lg: 1, all: 0},
       slide: 1,
@@ -58,8 +59,6 @@ export class MovieDisplayComponent implements OnInit {
       touch: true
     }
 
-    this.carouselTileItems = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
-
     this.carouselTile = {
       grid: {xs: 2, sm: 3, md: 3, lg: 5, all: 0},
       slide: 2,
@@ -84,6 +83,18 @@ export class MovieDisplayComponent implements OnInit {
      }
    },error=>{
      this.nowPlayingMovies = [];
+   })
+ }
+
+  getTopRatedMovies(){
+   this.movieService.getTopRatedMovies().subscribe(response=>{
+     if(response.json().results.length > 0){
+       this.topRatedMovies = response.json().results;
+     } else {
+       this.topRatedMovies = [];
+     }
+   },error=>{
+     this.topRatedMovies = [];
    })
  }
 

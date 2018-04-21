@@ -1,9 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NgxCarouselModule } from 'ngx-carousel';
 import { HttpModule } from '@angular/http';
-import 'hammerjs';
 
 import { CoreModule } from './core/core.module';
 import { MovieModule } from './movie/movie.module';
@@ -13,15 +11,14 @@ import { MovieDisplayComponent } from './movie/movie-display/movie-display.compo
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MovieDisplayComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     CoreModule,
-    NgxCarouselModule,
     SharedModule,
     HttpModule,
+    MovieModule,
     RouterModule.forRoot([{
       path: '',
       component: MovieDisplayComponent

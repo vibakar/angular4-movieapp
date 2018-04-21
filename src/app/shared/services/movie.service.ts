@@ -12,4 +12,8 @@ export class MovieService {
   	return this.http.get('/v1/movie/nowplaying')
   }
 
+  getTopRatedMovies() {
+  	return this.http.get('/v1/movie/toprated')
+  }
+
 }
