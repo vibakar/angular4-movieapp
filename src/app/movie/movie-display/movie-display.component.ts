@@ -14,11 +14,13 @@ export class MovieDisplayComponent implements OnInit {
   carouselBanner: NgxCarousel;
   nowPlayingMovies = [];
   topRatedMovies = [];
+  upcomingMovies = [];
   constructor(private movieService:MovieService) { }
   
   ngOnInit() {
     this.getNowPlayngMovies();
     this.getTopRatedMovies();
+    this.getUpcomingMovies();
     this.carouselBanner = {
       grid: {xs: 1, sm: 1, md: 1, lg: 1, all: 0},
       slide: 1,
@@ -95,6 +97,18 @@ export class MovieDisplayComponent implements OnInit {
      }
    },error=>{
      this.topRatedMovies = [];
+   })
+ }
+
+ getUpcomingMovies(){
+   this.movieService.getUpcomingMovies().subscribe(response=>{
+     if(response.json().results.length > 0){
+       this.upcomingMovies = response.json().results;
+     } else {
+       this.upcomingMovies = [];
+     }
+   },error=>{
+     this.upcomingMovies = [];
    })
  }
 

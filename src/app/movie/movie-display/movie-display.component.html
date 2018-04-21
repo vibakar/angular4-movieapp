@@ -22,8 +22,8 @@
       <div class="card">
         <img src="http://image.tmdb.org/t/p/w185/{{movie.backdrop_path}}" width="248" height="200">
         <div class="mg-5">
-          <h5>{{movie.title}}</h5>
-          <span class="float-left "><i class="fa fa-thumbs-up"></i>&nbsp;{{movie.vote_count}}</span>
+          <h6>{{movie.title}}</h6>
+          <span class="float-left"><i class="fa fa-thumbs-up"></i>&nbsp;<i class="fa fa-thumbs-down"></i>&nbsp;{{movie.vote_count}}</span>
           <span class="float-right"><i class="fa fa-star"></i>&nbsp;{{movie.vote_average}}/10</span>
         </div>
       </div>
@@ -39,9 +39,24 @@
       <div class="card">
         <img src="http://image.tmdb.org/t/p/w185/{{movie.backdrop_path}}" width="248" height="200">
         <div class="mg-5">
-          <h5>{{movie.title}}</h5>
-          <span class="float-left "><i class="fa fa-thumbs-up"></i>&nbsp;{{movie.vote_count}}</span>
+          <h6>{{movie.title}}</h6>
+          <span class="float-left "><i class="fa fa-thumbs-up"></i>&nbsp;<i class="fa fa-thumbs-down"></i>&nbsp;{{movie.vote_count}}</span>
           <span class="float-right"><i class="fa fa-star"></i>&nbsp;{{movie.vote_average}}/10</span>
+        </div>
+      </div>
+    </ngx-tile>
+      <button NgxCarouselPrev class='leftRs'>&lt;</button>
+      <button NgxCarouselNext class='rightRs'>&gt;</button>
+    </ngx-carousel>
+</div>
+<div>
+  <h3 class="text-center clr-brown">Upcoming Movies</h3>
+  <ngx-carousel [inputs]="carouselTile">
+    <ngx-tile NgxCarouselItem *ngFor="let movie of upcomingMovies">
+      <div class="card">
+        <img src="http://image.tmdb.org/t/p/w185/{{movie.backdrop_path}}" width="248" height="200">
+        <div class="mg-5 mgTop-25">
+          <h5 class="text-center">{{movie.title}}</h5>
         </div>
       </div>
     </ngx-tile>

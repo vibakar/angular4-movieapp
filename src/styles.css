@@ -26,7 +26,7 @@ button[disabled] {
     color: gray;
 }
 
-.fa-thumbs-up {
+.fa-thumbs-up, .fa-thumbs-down {
 	color: darkcyan;
 }
 

@@ -16,4 +16,8 @@ export class MovieService {
   	return this.http.get('/v1/movie/toprated')
   }
 
+  getUpcomingMovies() {
+  	return this.http.get('/v1/movie/upcoming')
+  }
+
 }
