@@ -18,8 +18,8 @@ button[disabled] {
 	z-index: 999;
 }
 
-.mg-5 {
-	margin: 5px;
+.pd-5 {
+	padding: 5px;
 }
 
 .fa-star{

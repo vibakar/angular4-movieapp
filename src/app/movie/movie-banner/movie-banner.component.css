@@ -1,3 +1,7 @@
+img{
+    height: 400px;
+    width: 100%;
+}
 .leftRs {
     position: absolute;
     margin: auto;
@@ -22,19 +26,3 @@
     right: 0;
 }
 
-.clear {
-    clear: both;
-}
-
-.card {
-    width: 250px;
-    height: 290px;
-}
-
-.mgTop-20 {
-    margin-top: 20px;
-}
-
-.mgTop-10 {
-    margin-top: 10px;
-}
