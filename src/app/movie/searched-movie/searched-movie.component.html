@@ -1,0 +1,21 @@
+<div>
+  <h3 class="clr-brown">Search Result</h3>
+	<ngx-carousel [inputs]="carouselTile">
+	  <ngx-tile NgxCarouselItem *ngFor="let movie of moviesFound">
+      <div class="card">
+        <img src="http://image.tmdb.org/t/p/w185/{{movie.backdrop_path}}" width="248" height="200">
+        <div class="pd-5">
+          <h6 class="mgTop-10">{{movie.title}}</h6>
+          <p class="mgTop-20">
+            <span class="float-left"><i class="fa fa-thumbs-up"></i>&nbsp;<i class="fa fa-thumbs-down"></i>&nbsp;{{movie.vote_count}}</span>
+            <span class="float-right"><i class="fa fa-star"></i>&nbsp;{{movie.vote_average}}/10</span>
+          </p>
+        </div>
+      </div>
+	  </ngx-tile>
+      <button NgxCarouselPrev class='leftRs'>&lt;</button>
+      <button NgxCarouselNext class='rightRs'>&gt;</button>
+    </ngx-carousel>
+    <h5 class="text-center" *ngIf="noMovies">No Movies Found</h5>
+</div>
+<ng4-loading-spinner [loadingText]="'Loading...'"> </ng4-loading-spinner>
