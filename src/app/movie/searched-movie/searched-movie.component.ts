@@ -17,6 +17,7 @@ export class SearchedMovieComponent implements OnInit {
   carouselTile: NgxCarousel;
   noMovies: boolean = false;
   moviesFound = [];
+  similarMovies = [];
   ngOnInit() {
     this.carouselTile = {
       grid: {xs: 2, sm: 3, md: 3, lg: 5, all: 0},
@@ -40,6 +41,7 @@ export class SearchedMovieComponent implements OnInit {
   		                 	let res = response.json();
   		                 	if(res.results.length > 0){
   		                 		this.moviesFound = res.results;
+                          this.getSimilarMovies(res.results[0].id);
                           this.noMovies = false;
   		                 	} else {
                           this.noMovies = true;
@@ -51,6 +53,20 @@ export class SearchedMovieComponent implements OnInit {
   		                 	 this.moviesFound = [];
   		                 })
   	})
+  }
+
+  getSimilarMovies(movieId){
+    this.movieService.getSimilarMovies(movieId)
+                     .subscribe(response=>{
+                       let res = response.json();
+                       if(res.results.length > 0) {
+                         this.similarMovies = res.results;
+                       } else {
+                         this.similarMovies = [];
+                       }
+                     },error=>{
+                       this.similarMovies = [];
+                     })
   }
 
 }
