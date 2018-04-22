@@ -8,6 +8,7 @@ import 'hammerjs';
 import { MovieDisplayComponent } from './movie-display/movie-display.component';
 import { MovieBannerComponent } from './movie-banner/movie-banner.component';
 import { SearchedMovieComponent } from './searched-movie/searched-movie.component';
+import { MovieCarouselComponent } from './movie-carousel/movie-carousel.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,6 @@ import { SearchedMovieComponent } from './searched-movie/searched-movie.componen
     	component: SearchedMovieComponent
     }])
     ],
-  declarations: [MovieDisplayComponent, MovieBannerComponent, SearchedMovieComponent]
+  declarations: [MovieDisplayComponent, MovieBannerComponent, SearchedMovieComponent, MovieCarouselComponent]
 })
 export class MovieModule { }
