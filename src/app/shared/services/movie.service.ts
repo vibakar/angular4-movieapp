@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
-
-import { environment } from '../../../environments/environment';
+import { Http } from '@angular/http';
 
 @Injectable()
 export class MovieService {
@@ -18,6 +16,14 @@ export class MovieService {
 
   getUpcomingMovies() {
   	return this.http.get('/v1/movie/upcoming')
+  }
+
+  searchMovie(movie) {
+    return this.http.get('/v1/movie/search?movie='+movie)
+  }
+
+  getSimilarMovies(movieId) {
+    return this.http.get('/v1/movie/similar/'+movieId)
   }
 
 }
