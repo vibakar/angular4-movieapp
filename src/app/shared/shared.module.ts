@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MovieService } from './services/movie.service';
+import { UserService } from './services/user.service';
 
 @NgModule({
   imports: [
@@ -9,7 +10,8 @@ import { MovieService } from './services/movie.service';
   ],
   declarations: [],
   providers: [
-  	MovieService
+  	MovieService,
+  	UserService
   ]
 })
 export class SharedModule { }
