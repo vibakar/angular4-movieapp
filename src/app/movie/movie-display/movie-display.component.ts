@@ -3,6 +3,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 import { MovieService } from '../../shared/services/movie.service';
 import { UserService } from '../../shared/services/user.service';
+import { CommonService } from '../../shared/services/common.service';
 
 @Component({
   selector: 'app-movie-display',
@@ -14,7 +15,7 @@ export class MovieDisplayComponent implements OnInit {
   topRatedMovies = [];
   upcomingMovies = [];
   userFavMovies = [];
-  constructor(private movieService:MovieService, private userService:UserService, private spinner:Ng4LoadingSpinnerService) { }
+  constructor(private movieService:MovieService, private userService:UserService, private commonService:CommonService, private spinner:Ng4LoadingSpinnerService) { }
   
   ngOnInit() {
     this.getUserFavMovies();
@@ -44,7 +45,7 @@ export class MovieDisplayComponent implements OnInit {
      this.spinner.hide();
      if(response.json().results.length > 0){
        let data = response.json().results;
-       this.checkForfav(data, this.nowPlayingMovies);
+       this.commonService.checkForfav(this.userFavMovies, data, this.nowPlayingMovies);
      } else {
        this.nowPlayingMovies = [];
      }
@@ -60,7 +61,7 @@ export class MovieDisplayComponent implements OnInit {
      this.spinner.hide();
      if(response.json().results.length > 0){
        let data = response.json().results;
-       this.checkForfav(data, this.topRatedMovies);
+       this.commonService.checkForfav(this.userFavMovies, data, this.topRatedMovies);
      } else {
        this.topRatedMovies = [];
      }
@@ -76,7 +77,7 @@ export class MovieDisplayComponent implements OnInit {
      this.spinner.hide();
      if(response.json().results.length > 0){
        let data = response.json().results;
-       this.checkForfav(data, this.upcomingMovies);
+       this.commonService.checkForfav(this.userFavMovies, data, this.upcomingMovies);
      } else {
        this.upcomingMovies = [];
      }
@@ -84,31 +85,6 @@ export class MovieDisplayComponent implements OnInit {
      this.spinner.hide();
      this.upcomingMovies = [];
    })
- }
-
- checkForfav(actualData, finalData){
-   if(this.userFavMovies.length > 0) {
-    actualData.forEach((movie)=>{
-       this.userFavMovies.forEach((favMovie)=>{
-         if(favMovie.id === movie.id) {
-             movie.fav = true;
-             let movieExists = finalData.find(m=>m.id == movie.id);
-             if (!movieExists) {
-               finalData.push(movie);
-             }
-         } else {
-             let movieExists = finalData.find(m=>m.id == movie.id);
-             if (!movieExists) {
-               finalData.push(movie);
-             }
-         }
-       })
-     })
-  } else {
-    actualData.forEach(movie=>{
-      finalData.push(movie)
-    })
-  }
  }
 
 }

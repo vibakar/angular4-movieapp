@@ -35,7 +35,7 @@ export class MovieCarouselComponent implements OnInit {
   addMovieToFav(movie){
     let data = {
       "id": movie.id,
-      "title": movie.original_title,
+      "title": movie.title,
       "votes": movie.vote_count,
       "rating": movie.vote_average,
       "poster": movie.poster_path

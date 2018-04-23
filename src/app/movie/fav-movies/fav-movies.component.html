@@ -1,0 +1,23 @@
+<div>
+	<ngx-carousel [inputs]="carouselTile">
+	  <ngx-tile NgxCarouselItem *ngFor="let movie of favMovies">
+      <div class="card">
+        <div class="circle red" (click)="removeFromFav(movie)"><i class="fa fa-heart"></i></div>
+        <img src="http://image.tmdb.org/t/p/w185/{{movie.poster}}" width="248" height="200">
+        <div class="pd-5" *ngIf="type!='upcoming'">
+          <h6 class="mgTop-10">{{movie.title}}</h6>
+          <p class="mgTop-20">
+            <span class="float-left"><i class="fa fa-thumbs-up"></i>&nbsp;<i class="fa fa-thumbs-down"></i>&nbsp;{{movie.votes}}</span>
+            <span class="float-right"><i class="fa fa-star"></i>&nbsp;{{movie.rating}}/10</span>
+          </p>
+        </div>
+        <div class="pd-5 mgTop-20" *ngIf="type=='upcoming'">
+          <h5 class="text-center">{{movie.title}}</h5>
+        </div>
+      </div>
+	  </ngx-tile>
+      <button NgxCarouselPrev class='leftRs'>&lt;</button>
+      <button NgxCarouselNext class='rightRs'>&gt;</button>
+    </ngx-carousel>
+    <h5 class="text-center" *ngIf="favMovies.length == 0">No Favourite Movies Found</h5>
+</div>
