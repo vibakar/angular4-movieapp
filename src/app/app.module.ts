@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
-
 import { CoreModule } from './core/core.module';
 import { MovieModule } from './movie/movie.module';
 import { SharedModule } from './shared/shared.module';

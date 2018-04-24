@@ -1,0 +1,32 @@
+<div *ngIf="showsignup">
+  <h5 class="text-center">Signup</h5>
+  <div class="form-container">
+    <mat-form-field>
+      <input matInput placeholder="User Name">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Email">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" placeholder="Password">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" placeholder="Confirm Password">
+    </mat-form-field>
+    <button mat-raised-button color="primary">Signup</button><br>
+    <p>Already have an account? <a href="javascript:void(0)" (click)="toggleForm()">Login Here</a></p>
+  </div>
+</div>
+<div *ngIf="!showsignup">
+  <h5 class="text-center">Login</h5>
+  <div class="form-container">
+    <mat-form-field>
+      <input matInput placeholder="Email">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" placeholder="Password">
+    </mat-form-field>
+    <button mat-raised-button color="primary">Login</button><br>
+    <p>Dont have an account yet? <a href="javascript:void(0)" (click)="toggleForm()">Signup Here</a></p>
+  </div>
+</div>

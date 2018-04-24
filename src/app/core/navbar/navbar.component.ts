@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLinkActive } from '@angular/router';
+import { LoginService } from '../../shared/services/login.service';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { Router, RouterLinkActive } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public router: Router) { }
+  constructor(public router: Router, private loginService:LoginService) { }
 
   ngOnInit() {
   }
@@ -26,5 +27,9 @@ export class NavbarComponent implements OnInit {
 
   favourites(){
     this.router.navigate(['/favourites']);
+  }
+
+  login(){
+    this.loginService.login()
   }
 }
