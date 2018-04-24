@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLinkActive } from '@angular/router';
 
 
 @Component({
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(public router: Router) { }
 
   ngOnInit() {
   }
@@ -22,5 +22,9 @@ export class NavbarComponent implements OnInit {
   	if(value.length > 0){
   		this.router.navigate(['/search'],  { queryParams: { movie: value } });
   	}
+  }
+
+  favourites(){
+    this.router.navigate(['/favourites']);
   }
 }

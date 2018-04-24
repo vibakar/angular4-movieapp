@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { MovieService } from './services/movie.service';
 import { UserService } from './services/user.service';
+import { CommonService } from './services/common.service';
 
 @NgModule({
   imports: [
@@ -11,7 +12,8 @@ import { UserService } from './services/user.service';
   declarations: [],
   providers: [
   	MovieService,
-  	UserService
+  	UserService,
+  	CommonService
   ]
 })
 export class SharedModule { }
