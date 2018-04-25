@@ -1,32 +1,32 @@
-<div *ngIf="showsignup">
+<div *ngIf="showsignupForm">
   <h5 class="text-center">Signup</h5>
   <div class="form-container">
     <mat-form-field>
-      <input matInput placeholder="User Name">
+      <input matInput placeholder="User Name" [matTooltip]="usernameTooltip" matTooltipPosition="right" (keyup)="validateSignupForm();nameTooltip.show()" (blur)="nameTooltip.hide()" #nameTooltip="matTooltip" [(ngModel)]="signupInputs.username">
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Email">
+      <input matInput placeholder="Email" (keyup)="validateSignupForm()" [(ngModel)]="signupInputs.email">
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="password" placeholder="Password">
+      <input matInput type="password" placeholder="Password" [matTooltip]="passwordTooltip" matTooltipPosition="right" (keyup)="validateSignupForm();pwdTooltip.show()" (blur)="pwdTooltip.hide()" #pwdTooltip="matTooltip" [(ngModel)]="signupInputs.password">
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="password" placeholder="Confirm Password">
+      <input matInput type="password" placeholder="Confirm Password" (keyup)="validateSignupForm()" [(ngModel)]="signupInputs.confirmPassword">
     </mat-form-field>
-    <button mat-raised-button color="primary">Signup</button><br>
+    <button mat-raised-button color="primary" [disabled]="disableSignupBtn">Signup</button><br>
     <p>Already have an account? <a href="javascript:void(0)" (click)="toggleForm()">Login Here</a></p>
   </div>
 </div>
-<div *ngIf="!showsignup">
+<div *ngIf="!showsignupForm">
   <h5 class="text-center">Login</h5>
   <div class="form-container">
     <mat-form-field>
-      <input matInput placeholder="Email">
+      <input matInput placeholder="Email" (keyup)="validateLoginForm()" [(ngModel)]="loginInputs.email">
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="password" placeholder="Password">
+      <input matInput type="password" placeholder="Password" (keyup)="validateLoginForm()" [(ngModel)]="loginInputs.password">
     </mat-form-field>
-    <button mat-raised-button color="primary">Login</button><br>
+    <button mat-raised-button color="primary" [disabled]="disableLoginBtn">Login</button><br>
     <p>Dont have an account yet? <a href="javascript:void(0)" (click)="toggleForm()">Signup Here</a></p>
   </div>
 </div>
