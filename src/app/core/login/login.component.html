@@ -2,16 +2,22 @@
   <h5 class="text-center">Signup</h5>
   <div class="form-container">
     <mat-form-field>
-      <input matInput placeholder="User Name" [matTooltip]="usernameTooltip" matTooltipPosition="right" (keyup)="validateSignupForm();nameTooltip.show()" (blur)="nameTooltip.hide()" #nameTooltip="matTooltip" [(ngModel)]="signupInputs.username">
+      <input matInput placeholder="User Name" (keyup)="validateSignupForm()" [formControl]="errCheck.usernameErr" [(ngModel)]="signupInputs.username" required="">
+      <mat-error *ngIf="errCheck.usernameErr.invalid">{{getUsernameErr()}}</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Email" (keyup)="validateSignupForm()" [(ngModel)]="signupInputs.email">
+      <input matInput placeholder="Email" (keyup)="validateSignupForm()" [(ngModel)]="signupInputs.email" [formControl]="errCheck.emailErr" required="">
+      <mat-error *ngIf="errCheck.emailErr.invalid">{{getEmailErr()}}</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="password" placeholder="Password" [matTooltip]="passwordTooltip" matTooltipPosition="right" (keyup)="validateSignupForm();pwdTooltip.show()" (blur)="pwdTooltip.hide()" #pwdTooltip="matTooltip" [(ngModel)]="signupInputs.password">
+      <input matInput [type]="hideSignupPwd ? 'password' : 'text'" placeholder="Password" (keyup)="validateSignupForm()" [formControl]="errCheck.passwordErr" [(ngModel)]="signupInputs.password" required="">
+      <mat-icon matSuffix (click)="hideSignupPwd = !hideSignupPwd">{{hideSignupPwd ? 'visibility' : 'visibility_off'}}</mat-icon>
+      <mat-error *ngIf="errCheck.passwordErr.invalid">{{getPasswordErr()}}</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="password" placeholder="Confirm Password" (keyup)="validateSignupForm()" [(ngModel)]="signupInputs.confirmPassword">
+      <input matInput [type]="hideSignupCPwd ? 'password' : 'text'" placeholder="Confirm Password" (keyup)="validateSignupForm()" [(ngModel)]="signupInputs.confirmPassword" [formControl]="errCheck.confirmPasswordErr" required="">
+      <mat-icon matSuffix (click)="hideSignupCPwd = !hideSignupCPwd">{{hideSignupCPwd ? 'visibility' : 'visibility_off'}}</mat-icon>
+      <mat-error *ngIf="errCheck.confirmPasswordErr.invalid">{{getConfirmPasswordErr()}}</mat-error>
     </mat-form-field>
     <button mat-raised-button color="primary" [disabled]="disableSignupBtn">Signup</button><br>
     <p>Already have an account? <a href="javascript:void(0)" (click)="toggleForm()">Login Here</a></p>
@@ -21,10 +27,11 @@
   <h5 class="text-center">Login</h5>
   <div class="form-container">
     <mat-form-field>
-      <input matInput placeholder="Email" (keyup)="validateLoginForm()" [(ngModel)]="loginInputs.email">
+      <input matInput placeholder="Email" (keyup)="validateLoginForm()" [(ngModel)]="loginInputs.email" required="">
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="password" placeholder="Password" (keyup)="validateLoginForm()" [(ngModel)]="loginInputs.password">
+      <input matInput [type]="hideLoginPwd ? 'password' : 'text'" placeholder="Password" (keyup)="validateLoginForm()" [(ngModel)]="loginInputs.password" required="">
+      <mat-icon matSuffix (click)="hideLoginPwd = !hideLoginPwd">{{hideLoginPwd ? 'visibility' : 'visibility_off'}}</mat-icon>
     </mat-form-field>
     <button mat-raised-button color="primary" [disabled]="disableLoginBtn">Login</button><br>
     <p>Dont have an account yet? <a href="javascript:void(0)" (click)="toggleForm()">Signup Here</a></p>
