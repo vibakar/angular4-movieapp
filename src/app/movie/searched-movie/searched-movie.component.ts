@@ -21,8 +21,8 @@ export class SearchedMovieComponent implements OnInit {
   userFavMovies = [];
 
   ngOnInit() {
-    this.getUserFavMovies();
   	this.route.queryParams.subscribe(params=>{
+      this.getUserFavMovies();
       this.spinner.show();
   		this.search = params['movie'];
   	})

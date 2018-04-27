@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { FormControl, Validators } from '@angular/forms';
 
+import { UserService } from '../../shared/services/user.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,7 +11,7 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<LoginComponent>) { }
+  constructor(public dialogRef: MatDialogRef<LoginComponent>, private userService:UserService) { }
   showsignupForm:boolean = true;
   disableSignupBtn:boolean = true;
   disableLoginBtn:boolean = true;
@@ -42,6 +44,9 @@ export class LoginComponent implements OnInit {
     email: '',
     password: ''
   }
+
+  signupFailMsg = '';
+  loginFailMsg = '';
 
   ngOnInit() { }
 
@@ -91,5 +96,23 @@ export class LoginComponent implements OnInit {
   getConfirmPasswordErr() {
     return this.errCheck.confirmPasswordErr.hasError('required') ? 'Confirm Password is required' :
            '';
+  }
+
+  signup(){
+    this.userService.signup(this.signupInputs).subscribe(response=>{
+      this.signupFailMsg = '';
+      this.dialogRef.close(true);
+    },error=>{
+      this.signupFailMsg = (error.status == 504) ? "Service Unavailable,Try Later" : error.json().errMsg;
+    })
+  }
+
+  login(){
+     this.userService.login(this.loginInputs).subscribe(response=>{
+      this.loginFailMsg = '';
+      this.dialogRef.close(true);
+    },error=>{
+      this.loginFailMsg = (error.status == 504) ? "Service Unavailable,Try Later" : error.json().errMsg;
+    })
   }
 }

@@ -19,8 +19,9 @@
       <mat-icon matSuffix (click)="hideSignupCPwd = !hideSignupCPwd">{{hideSignupCPwd ? 'visibility' : 'visibility_off'}}</mat-icon>
       <mat-error *ngIf="errCheck.confirmPasswordErr.invalid">{{getConfirmPasswordErr()}}</mat-error>
     </mat-form-field>
-    <button mat-raised-button color="primary" [disabled]="disableSignupBtn">Signup</button><br>
+    <button mat-raised-button color="primary" [disabled]="disableSignupBtn" (click)="signup()">Signup</button><br>
     <p>Already have an account? <a href="javascript:void(0)" (click)="toggleForm()">Login Here</a></p>
+    <p class="text-center red" *ngIf="signupFailMsg">{{signupFailMsg}}</p>
   </div>
 </div>
 <div *ngIf="!showsignupForm">
@@ -33,7 +34,8 @@
       <input matInput [type]="hideLoginPwd ? 'password' : 'text'" placeholder="Password" (keyup)="validateLoginForm()" [(ngModel)]="loginInputs.password" required="">
       <mat-icon matSuffix (click)="hideLoginPwd = !hideLoginPwd">{{hideLoginPwd ? 'visibility' : 'visibility_off'}}</mat-icon>
     </mat-form-field>
-    <button mat-raised-button color="primary" [disabled]="disableLoginBtn">Login</button><br>
+    <button mat-raised-button color="primary" [disabled]="disableLoginBtn" (click)="login()">Login</button><br>
     <p>Dont have an account yet? <a href="javascript:void(0)" (click)="toggleForm()">Signup Here</a></p>
+    <p class="text-center red" *ngIf="loginFailMsg">{{loginFailMsg}}</p>
   </div>
 </div>

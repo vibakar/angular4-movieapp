@@ -6,15 +6,23 @@ export class UserService {
 
   constructor(private http:Http) { }
 
+  signup(data){
+    return this.http.post("/v1/user/signup", data);
+  }
+
+  login(data){
+    return this.http.post("/v1/user/login", data);
+  }
+
   addMovie(movie){
-  	return this.http.post("/v1/users/addmovie", movie);
+  	return this.http.post("/v1/user/addmovie", movie);
   }
 
   getFavMovies(){
-  	return this.http.get("/v1/users/favmovies");
+  	return this.http.get("/v1/user/favmovies");
   }
 
   delFavMovie(movieId){
-  	return this.http.delete("/v1/users/delmovie/"+movieId)
+  	return this.http.delete("/v1/user/delmovie/"+movieId)
   }
 }
