@@ -2,7 +2,7 @@
 	<ngx-carousel [inputs]="carouselTile">
 	  <ngx-tile NgxCarouselItem *ngFor="let movie of movies">
       <div class="card">
-        <div class="circle" [ngClass]="{'red': movie.fav, 'darkgray': !movie.fav}" (click)="addMovieToFav(movie)"><i class="fa fa-heart"></i></div>
+        <div class="circle" [ngClass]="{'red': movie.fav, 'darkgray': !movie.fav}" (click)="favAction(movie)"><i class="fa fa-heart"></i></div>
         <img src="http://image.tmdb.org/t/p/w185/{{movie.backdrop_path}}" width="248" height="200">
         <div class="pd-5" *ngIf="type!='upcoming'">
           <h6 class="mgTop-10">{{movie.title}}</h6>
