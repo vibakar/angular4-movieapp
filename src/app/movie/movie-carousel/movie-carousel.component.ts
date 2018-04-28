@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgxCarousel } from 'ngx-carousel';
 import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
 
 import { UserService } from '../../shared/services/user.service';
+import { CommonService } from '../../shared/services/common.service';
 
 @Component({
   selector: 'movie-carousel',
@@ -14,7 +16,7 @@ export class MovieCarouselComponent implements OnInit {
   @Input('movies') movies = [];
   @Input('type') type = '';
 
-  constructor(private userService:UserService, private snackbar: MatSnackBar) { }
+  constructor(private router:Router, private userService:UserService, private snackbar: MatSnackBar, private commonService:CommonService) { }
 
   ngOnInit() {
   	this.carouselTile = {
@@ -48,9 +50,15 @@ export class MovieCarouselComponent implements OnInit {
                             duration: 3000
                           }); 
                       },error=>{
-                        this.snackbar.open(error.json().errMsg, 'OK', {
+                        if(error.json().code == 403){
+                          this.commonService.deleteCookie("U_SESSION_ID");
+                          this.router.navigate(['/']);
+                          location.reload();
+                        } else {
+                           this.snackbar.open(error.json().errMsg, 'OK', {
                             duration: 3000
                           }); 
+                        }
                       })
     } else {
       this.userService.addMovie(data)

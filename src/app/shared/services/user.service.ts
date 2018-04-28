@@ -14,6 +14,10 @@ export class UserService {
     return this.http.post("/v1/user/login", data);
   }
 
+  logout(){
+    return this.http.get("/v1/user/logout");
+  }
+
   addMovie(movie){
   	return this.http.post("/v1/user/addmovie", movie);
   }
@@ -24,5 +28,9 @@ export class UserService {
 
   delFavMovie(movieId){
   	return this.http.delete("/v1/user/delmovie/"+movieId)
+  }
+
+  getUsername(){
+    return this.http.get("/v1/user/username")
   }
 }

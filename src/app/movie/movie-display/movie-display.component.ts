@@ -18,7 +18,13 @@ export class MovieDisplayComponent implements OnInit {
   constructor(private movieService:MovieService, private userService:UserService, private commonService:CommonService, private spinner:Ng4LoadingSpinnerService) { }
   
   ngOnInit() {
-    this.getUserFavMovies();
+    if(this.commonService.isLoggedIn()){
+      this.getUserFavMovies();
+    } else {
+       this.getNowPlayngMovies();
+       this.getTopRatedMovies();
+       this.getUpcomingMovies();
+    }
   }
 
  getUserFavMovies(){
@@ -33,9 +39,6 @@ export class MovieDisplayComponent implements OnInit {
                    },error=>{
                      this.spinner.hide();
                      this.userFavMovies = [];
-                     this.getNowPlayngMovies();
-                     this.getTopRatedMovies();
-                     this.getUpcomingMovies();
                    })
  }
 

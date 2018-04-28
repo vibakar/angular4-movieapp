@@ -8,7 +8,7 @@ export class LoginService {
 
     constructor(private dialog: MatDialog) { }
 
-    public login(): Observable<boolean> {
+    public loginForm(): Observable<boolean> {
 
         let dialogRef: MatDialogRef<LoginComponent>;
 

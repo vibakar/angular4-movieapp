@@ -6,6 +6,7 @@ import { MovieService } from './services/movie.service';
 import { UserService } from './services/user.service';
 import { CommonService } from './services/common.service';
 import { LoginService } from './services/login.service';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { LoginService } from './services/login.service';
   	MovieService,
   	UserService,
   	CommonService,
-  	LoginService
+  	LoginService,
+    AuthGuardService
   ]
 })
 export class SharedModule { }

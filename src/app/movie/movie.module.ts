@@ -12,6 +12,8 @@ import { MovieBannerComponent } from './movie-banner/movie-banner.component';
 import { SearchedMovieComponent } from './searched-movie/searched-movie.component';
 import { MovieCarouselComponent } from './movie-carousel/movie-carousel.component';
 import { FavMoviesComponent } from './fav-movies/fav-movies.component';
+import { AuthGuardService } from '../shared/services/auth-guard.service';
+
 
 @NgModule({
   imports: [
@@ -25,7 +27,8 @@ import { FavMoviesComponent } from './fav-movies/fav-movies.component';
     	component: SearchedMovieComponent
     },{
         path:'favourites',
-        component: FavMoviesComponent
+        component: FavMoviesComponent,
+        canActivate: [AuthGuardService]
     }])
     ],
   declarations: [MovieDisplayComponent, MovieBannerComponent, SearchedMovieComponent, MovieCarouselComponent, FavMoviesComponent]

@@ -102,6 +102,7 @@ export class LoginComponent implements OnInit {
     this.userService.signup(this.signupInputs).subscribe(response=>{
       this.signupFailMsg = '';
       this.dialogRef.close(true);
+      location.reload();
     },error=>{
       this.signupFailMsg = (error.status == 504) ? "Service Unavailable,Try Later" : error.json().errMsg;
     })
@@ -111,6 +112,7 @@ export class LoginComponent implements OnInit {
      this.userService.login(this.loginInputs).subscribe(response=>{
       this.loginFailMsg = '';
       this.dialogRef.close(true);
+      location.reload();
     },error=>{
       this.loginFailMsg = (error.status == 504) ? "Service Unavailable,Try Later" : error.json().errMsg;
     })

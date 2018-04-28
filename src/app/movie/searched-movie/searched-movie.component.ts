@@ -22,9 +22,13 @@ export class SearchedMovieComponent implements OnInit {
 
   ngOnInit() {
   	this.route.queryParams.subscribe(params=>{
-      this.getUserFavMovies();
       this.spinner.show();
   		this.search = params['movie'];
+      if(this.commonService.isLoggedIn()){
+        this.getUserFavMovies();
+      } else {
+        this.searchMovies();
+      }
   	})
   }
 
@@ -36,11 +40,11 @@ export class SearchedMovieComponent implements OnInit {
                        this.searchMovies();
                      },error=>{
                        this.userFavMovies = [];
-                       this.searchMovies();
                      })
  }
 
  searchMovies(){
+   this.moviesFound = [];
    this.movieService.searchMovie(this.search)
                     .subscribe(response=>{
                        this.spinner.hide();
