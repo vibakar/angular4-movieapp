@@ -111,6 +111,7 @@ export class MovieCarouselComponent implements OnInit {
             this.addMovieToFav(data);
             this.router.navigate(['/favourites']);
          } else {
+           this.router.navigate(['/favourites']);
            this.snackbar.open("Movie already exists in favourites", 'OK', {
                           duration: 3000
                         });
