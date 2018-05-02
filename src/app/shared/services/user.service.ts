@@ -33,4 +33,8 @@ export class UserService {
   getUsername(){
     return this.http.get("/v1/user/username")
   }
+
+  verifyEmail(data){
+    return this.http.post("/v1/user/verifyEmail", data)
+  }
 }

@@ -39,6 +39,10 @@ export class MovieDisplayComponent implements OnInit {
                    },error=>{
                      this.spinner.hide();
                      this.userFavMovies = [];
+                     if(error.json().code == 403){
+                        this.commonService.deleteCookie("U_SESSION_ID");
+                        location.reload();
+                      }
                    })
  }
 

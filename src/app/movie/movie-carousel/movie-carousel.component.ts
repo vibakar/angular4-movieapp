@@ -72,9 +72,15 @@ export class MovieCarouselComponent implements OnInit {
                           duration: 3000
                         });
                     },error=>{
-                      this.snackbar.open(error.json().errMsg, 'OK', {
-                          duration: 3000
-                        });
+                      if(error.json().code == 403){
+                        this.commonService.deleteCookie("U_SESSION_ID");
+                        this.router.navigate(['/']);
+                        location.reload();
+                      } else {
+                        this.snackbar.open(error.json().errMsg, 'OK', {
+                            duration: 3000
+                          });
+                      }
                     })      
   }
 

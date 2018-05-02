@@ -24,7 +24,8 @@
     <p class="text-center red" *ngIf="signupFailMsg">{{signupFailMsg}}</p>
   </div>
 </div>
-<div *ngIf="!showsignupForm">
+
+<div *ngIf="showLoginForm">
   <h5 class="text-center">Login</h5>
   <div class="form-container">
     <mat-form-field>
@@ -38,4 +39,17 @@
     <p>Dont have an account yet? <a href="javascript:void(0)" (click)="toggleForm()">Signup Here</a></p>
     <p class="text-center red" *ngIf="loginFailMsg">{{loginFailMsg}}</p>
   </div>
+</div>
+
+<div *ngIf="emailNotVerified">
+  <h5 class="text-center">Email Verification</h5>
+  <div class="text-center mgTop25">
+    <p *ngIf="loginFailMsg" class="red">Email not verfied yet!</p>
+    <p>Please enter the verification code, which sent to your registered email address</p>
+    <mat-form-field [floatLabel]="'never'">
+      <input matInput placeholder="Verification Code" #code  (keyup)="validateVcode(code.value)">
+    </mat-form-field>
+     <button mat-raised-button color="primary" [disabled]="disableVcodeBtn" (click)="verifyCode(code.value)">Submit</button>
+  </div>
+  <p *ngIf="emailVerifyFailed" class="text-center red">{{emailVerifyFailed}}</p>
 </div>

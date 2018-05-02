@@ -13,12 +13,18 @@ export class LoginComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<LoginComponent>, private userService:UserService) { }
   showsignupForm:boolean = true;
+  showLoginForm:boolean = false;
+
   disableSignupBtn:boolean = true;
   disableLoginBtn:boolean = true;
+  disableVcodeBtn:boolean = true;
 
-  hideSignupPwd = true;
-  hideSignupCPwd = true;
-  hideLoginPwd = true;
+  hideSignupPwd:boolean = true;
+  hideSignupCPwd:boolean = true;
+  hideLoginPwd:boolean = true;
+
+  emailNotVerified:boolean = false;
+  emailVerifyFailed = '';
 
   regex = {
     username: /^[a-zA-Z]{4,20}$/,
@@ -52,6 +58,7 @@ export class LoginComponent implements OnInit {
 
   toggleForm(){
   	this.showsignupForm = !this.showsignupForm;
+    this.showLoginForm = !this.showLoginForm;
   }
 
   validateSignupForm(){
@@ -68,6 +75,14 @@ export class LoginComponent implements OnInit {
       this.disableLoginBtn = false;
     } else {
       this.disableLoginBtn = true;
+    }
+  }
+
+  validateVcode(code){
+    if(code.trim().length == 6 ){
+      this.disableVcodeBtn = false;
+    } else {
+      this.disableVcodeBtn = true;
     }
   }
 
@@ -101,8 +116,8 @@ export class LoginComponent implements OnInit {
   signup(){
     this.userService.signup(this.signupInputs).subscribe(response=>{
       this.signupFailMsg = '';
-      this.dialogRef.close(true);
-      location.reload();
+      this.showsignupForm = false;
+      this.emailNotVerified = true;
     },error=>{
       this.signupFailMsg = (error.status == 504) ? "Service Unavailable,Try Later" : error.json().errMsg;
     })
@@ -114,7 +129,28 @@ export class LoginComponent implements OnInit {
       this.dialogRef.close(true);
       location.reload();
     },error=>{
-      this.loginFailMsg = (error.status == 504) ? "Service Unavailable,Try Later" : error.json().errMsg;
+       if(error.status == 504) {
+         this.loginFailMsg = "Service Unavailable,Try Later";
+       }
+       if(error.json().code == 403) {
+         this.loginFailMsg = error.json().errMsg;
+         this.showsignupForm = false;
+         this.showLoginForm = false;
+         this.emailNotVerified = true;
+       }
+       else {
+         this.loginFailMsg = error.json().errMsg;
+       }
     })
   }
+
+  verifyCode(code){
+    this.userService.verifyEmail({code: Number(code)}).subscribe(response=>{
+      this.dialogRef.close(true);
+      location.reload();
+    },error=>{
+      this.emailVerifyFailed = error.json().errMsg;
+    })
+  }
+
 }
