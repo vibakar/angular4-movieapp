@@ -50,6 +50,8 @@
       <input matInput placeholder="Verification Code" #code  (keyup)="validateVcode(code.value)">
     </mat-form-field>
      <button mat-raised-button color="primary" [disabled]="disableVcodeBtn" (click)="verifyCode(code.value)">Submit</button>
+     <p *ngIf="emailVerifyFailed" class="text-center red mgTop10">{{emailVerifyFailed}}</p>
+     <button mat-raised-button color="primary" class="mgTop20 mgRt10" [disabled]="disableResendVcode" (click)="resendVcode()">Resend Verification Code</button>
+     <span *ngIf="showSeconds">{{seconds}}</span>
   </div>
-  <p *ngIf="emailVerifyFailed" class="text-center red">{{emailVerifyFailed}}</p>
 </div>

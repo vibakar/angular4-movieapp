@@ -18,13 +18,16 @@ export class LoginComponent implements OnInit {
   disableSignupBtn:boolean = true;
   disableLoginBtn:boolean = true;
   disableVcodeBtn:boolean = true;
+  disableResendVcode:boolean = false;
 
   hideSignupPwd:boolean = true;
   hideSignupCPwd:boolean = true;
   hideLoginPwd:boolean = true;
 
   emailNotVerified:boolean = false;
+  showSeconds:boolean = false;
   emailVerifyFailed = '';
+  seconds = 100;
 
   regex = {
     username: /^[a-zA-Z]{4,20}$/,
@@ -114,21 +117,25 @@ export class LoginComponent implements OnInit {
   }
 
   signup(){
+    this.disableSignupBtn = true;
     this.userService.signup(this.signupInputs).subscribe(response=>{
       this.signupFailMsg = '';
       this.showsignupForm = false;
       this.emailNotVerified = true;
     },error=>{
+      this.disableSignupBtn = false;
       this.signupFailMsg = (error.status == 504) ? "Service Unavailable,Try Later" : error.json().errMsg;
     })
   }
 
   login(){
+    this.disableLoginBtn = true;
      this.userService.login(this.loginInputs).subscribe(response=>{
       this.loginFailMsg = '';
       this.dialogRef.close(true);
       location.reload();
     },error=>{
+      this.disableLoginBtn = false;
        if(error.status == 504) {
          this.loginFailMsg = "Service Unavailable,Try Later";
        }
@@ -151,6 +158,21 @@ export class LoginComponent implements OnInit {
     },error=>{
       this.emailVerifyFailed = error.json().errMsg;
     })
+  }
+
+  resendVcode(){
+    this.disableResendVcode = true;
+    this.showSeconds = true;
+    let interval = setInterval(()=>{
+      this.seconds--;
+      if(this.seconds == 0){
+        this.seconds = 100;
+        clearInterval(interval);
+        this.disableResendVcode = false;
+        this.showSeconds = false;
+      }
+    }, 1000)
+    this.userService.resendVerificationCode().subscribe();
   }
 
 }

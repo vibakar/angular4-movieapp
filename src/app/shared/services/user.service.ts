@@ -37,4 +37,8 @@ export class UserService {
   verifyEmail(data){
     return this.http.post("/v1/user/verifyEmail", data)
   }
+
+  resendVerificationCode(){
+    return this.http.get("/v1/user/resendCode");
+  }
 }
