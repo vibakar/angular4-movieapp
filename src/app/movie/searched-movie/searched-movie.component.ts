@@ -15,9 +15,7 @@ export class SearchedMovieComponent implements OnInit {
 
   constructor(private route:ActivatedRoute, private movieService:MovieService, private userService: UserService, private commonService:CommonService, private spinner:Ng4LoadingSpinnerService) { }
   search;
-  noMovies: boolean = false;
   moviesFound = [];
-  similarMovies = [];
   userFavMovies = [];
 
   ngOnInit() {
@@ -50,32 +48,14 @@ export class SearchedMovieComponent implements OnInit {
                        this.spinner.hide();
                        let res = response.json();
                        if(res.results.length > 0){
-                         this.getSimilarMovies(res.results[0].id);
                          this.commonService.checkForfav(this.userFavMovies, res.results, this.moviesFound);
-                         this.noMovies = false;
                        } else {
-                         this.noMovies = true;
                          this.moviesFound = [];
                        }
                      },error=>{
                        this.spinner.hide();
-                       this.noMovies = true;
                        this.moviesFound = [];
                      })
  }
-
- getSimilarMovies(movieId){
-    this.movieService.getSimilarMovies(movieId)
-                     .subscribe(response=>{
-                       let res = response.json();
-                       if(res.results.length > 0) {
-                         this.commonService.checkForfav(this.userFavMovies, res.results, this.similarMovies)
-                       } else {
-                         this.similarMovies = [];
-                       }
-                     },error=>{
-                       this.similarMovies = [];
-                     })
-  }
 
 }

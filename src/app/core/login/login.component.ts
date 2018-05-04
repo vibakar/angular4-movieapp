@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
   emailNotVerified:boolean = false;
   showSeconds:boolean = false;
   emailVerifyFailed = '';
+  vcode = '';
   seconds = 100;
 
   regex = {
@@ -81,8 +82,8 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  validateVcode(code){
-    if(code.trim().length == 6 ){
+  validateVcode(){
+    if(this.vcode.trim().length == 6 ){
       this.disableVcodeBtn = false;
     } else {
       this.disableVcodeBtn = true;
@@ -151,11 +152,12 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  verifyCode(code){
-    this.userService.verifyEmail({code: Number(code)}).subscribe(response=>{
+  verifyCode(){
+    this.userService.verifyEmail({code: parseInt(this.vcode)}).subscribe(response=>{
       this.dialogRef.close(true);
       location.reload();
     },error=>{
+      this.vcode = '';
       this.emailVerifyFailed = error.json().errMsg;
     })
   }

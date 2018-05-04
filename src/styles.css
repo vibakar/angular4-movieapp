@@ -24,12 +24,8 @@ button[disabled] {
 	padding: 5px;
 }
 
-.fa-star{
+.fa-star, .fa-hand-pointer-o{
     color: gray;
-}
-
-.fa-thumbs-up, .fa-thumbs-down {
-	color: darkcyan;
 }
 
 .clr-brown {

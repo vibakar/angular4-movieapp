@@ -47,9 +47,9 @@
     <p *ngIf="loginFailMsg" class="red">Email not verfied yet!</p>
     <p>Please enter the verification code, which sent to your registered email address</p>
     <mat-form-field [floatLabel]="'never'">
-      <input matInput placeholder="Verification Code" #code  (keyup)="validateVcode(code.value)">
+      <input matInput placeholder="Verification Code" [(ngModel)]="vcode" (keyup)="validateVcode()">
     </mat-form-field>
-     <button mat-raised-button color="primary" [disabled]="disableVcodeBtn" (click)="verifyCode(code.value)">Submit</button>
+     <button mat-raised-button color="primary" [disabled]="disableVcodeBtn" (click)="verifyCode()">Submit</button>
      <p *ngIf="emailVerifyFailed" class="text-center red mgTop10">{{emailVerifyFailed}}</p>
      <button mat-raised-button color="primary" class="mgTop20 mgRt10" [disabled]="disableResendVcode" (click)="resendVcode()">Resend Verification Code</button>
      <span *ngIf="showSeconds">{{seconds}}</span>

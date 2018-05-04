@@ -63,12 +63,10 @@
 }
 
 .noData {
-    border: 1px solid lightgray;
-    padding-top: 50px;
-    margin-top: -15px;
-    padding-bottom: 35px;
+    padding-bottom: 20px;
 }
 
-.fa-exclamation-triangle{
+.fa-exclamation-triangle {
     font-size: 30px;
+    color: lightgrey;
 }
