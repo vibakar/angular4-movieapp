@@ -7,11 +7,11 @@ export class MovieService {
   constructor(private http:Http) { }
 
   getNowPlayingMovies() {
-  	return this.http.get('/v1/movie/nowplaying')
+  	return this.http.get('/v1/movie/nowPlaying')
   }
 
   getTopRatedMovies() {
-  	return this.http.get('/v1/movie/toprated')
+  	return this.http.get('/v1/movie/topRated')
   }
 
   getUpcomingMovies() {
@@ -20,6 +20,10 @@ export class MovieService {
 
   searchMovie(movie) {
     return this.http.get('/v1/movie/search?movie='+movie)
+  }
+
+  getMovieDetail(movieId){
+    return this.http.get('/v1/movie/detail/'+movieId)
   }
 
   getSimilarMovies(movieId) {

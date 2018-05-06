@@ -91,6 +91,9 @@ export class MovieCarouselComponent implements OnInit {
                       this.snackbar.open(response.json().response, 'OK', {
                           duration: 3000
                         }); 
+                      if(movie.fromFav){
+                        this.movies = this.movies.filter(m=>m.id!==movie.id);
+                      }
                     },error=>{
                       if(error.json().code == 403){
                         this.commonService.deleteCookie("U_SESSION_ID");
@@ -125,6 +128,10 @@ export class MovieCarouselComponent implements OnInit {
         })
       }
     }
+  }
+
+  goToDetail(movie){
+    this.router.navigate(['/detail/'+movie.id]);
   }
 
 }

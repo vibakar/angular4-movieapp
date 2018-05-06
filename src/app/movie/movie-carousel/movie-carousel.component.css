@@ -70,3 +70,9 @@
     font-size: 30px;
     color: lightgrey;
 }
+
+img {
+     width: 248px;
+     height: 200px;
+     cursor: pointer;
+}

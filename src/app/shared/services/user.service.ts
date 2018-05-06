@@ -7,7 +7,7 @@ export class UserService {
   constructor(private http:Http) { }
 
   signup(data){
-    return this.http.post("/v1/user/signup", data);
+    return this.http.post("/v1/user/signUp", data);
   }
 
   login(data){
@@ -19,15 +19,15 @@ export class UserService {
   }
 
   addMovie(movie){
-  	return this.http.post("/v1/user/addmovie", movie);
+  	return this.http.post("/v1/user/addMovie", movie);
   }
 
   getFavMovies(){
-  	return this.http.get("/v1/user/favmovies");
+  	return this.http.get("/v1/user/favMovies");
   }
 
   delFavMovie(movieId){
-  	return this.http.delete("/v1/user/delmovie/"+movieId)
+  	return this.http.delete("/v1/user/delMovie/"+movieId)
   }
 
   getUsername(){
