@@ -1,3 +1,49 @@
-<p>
-  movie-detail works!
-</p>
+<div *ngIf="movieInfo; else noMovieInfo">
+	<h5 class="text-center mb-10">{{movieInfo.title}}</h5>
+	<div class="float-left">
+		<movie-carousel [movies]="arrMovieInfo" [type]="'detail'"></movie-carousel>
+	</div>
+	<div class="info" id="detail">
+		<p class="title">Overview:</p>
+		<p class="brief">{{movieInfo.overview || 'NA' }}</p>
+		<p class="title">Genres:</p>
+		<p class="brief">
+			<span *ngFor="let genre of movieInfo.genres; let isLast=last">
+			   {{genre.name}}{{isLast ? '' : ', '}}
+			</span>
+			<span *ngIf="movieInfo.genres.length == 0">NA</span>
+		</p>
+		<p class="title">Production Company:</p>
+		<p class="brief">
+			<span *ngFor="let comapny of movieInfo.production_companies; let isLast=last">
+			   {{comapny.name}}{{isLast ? '' : ', '}}
+			</span>
+			<span *ngIf="movieInfo.production_companies.length == 0">NA</span>
+		</p>
+		<p class="title">Language(s):</p>
+		<p class="brief">
+			<span *ngFor="let lang of movieInfo.spoken_languages; let isLast=last">
+			   {{lang.name}}{{isLast ? '' : ', '}}
+			</span>
+			<span *ngIf="movieInfo.spoken_languages.length == 0">NA</span>
+		</p>
+		<p class="title">Release Date:</p>
+		<p class="brief">{{movieInfo.release_date || 'NA' }}</p>
+		<p class="title">Run Time:</p>
+		<p class="brief">
+			<span *ngIf="movieInfo.runtime; else noRuntime">{{movieInfo.runtime}} mins</span>
+			<ng-template #noRuntime>NA</ng-template>
+		</p>
+	</div>
+	<a href="javascript:void(0)" (click)="toggleMoreInfo()" *ngIf="!showMore">show more</a>
+	<a class="ml-270" href="javascript:void(0)" (click)="toggleMoreInfo()" *ngIf="showMore">show less</a>
+</div>
+<ng-template #noMovieInfo>
+	<p class="text-center"><i class="fa fa-exclamation-triangle"></i></p>
+    <p class="text-center">Movie Detail Not Found</p>
+</ng-template>
+<div class="mgTop-10 clear" *ngIf="similarMovies.length > 0">
+  <h5 class="clr-brown">Similar Movies</h5>
+  <movie-carousel [movies]="similarMovies" [type]="'similar'"></movie-carousel>
+</div>
+<ng4-loading-spinner [loadingText]="'Loading...'"></ng4-loading-spinner>

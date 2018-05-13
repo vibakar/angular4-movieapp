@@ -1,0 +1,28 @@
+.mb-10 {
+	margin-bottom: 20px;
+}
+
+.ml-270 {
+	margin-left: 270px;
+}
+
+.info {
+	margin-left: 270px;
+	height: 280px;
+	padding-top: 5px;
+	overflow: hidden;
+}
+
+.brief {
+	text-indent: 20px;
+}
+
+.clear {
+    clear: both;
+}
+
+.title {
+	font-weight: 500;
+	font-style: italic;
+	color: brown;
+}
